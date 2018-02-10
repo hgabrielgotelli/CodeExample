@@ -31,7 +31,8 @@ class TopList extends Component {
         <h1>TOPS</h1>
         <a href="#" onClick={this.prev}> Prev </a>
         <label>{this.state.initial} to {this.state.initial + 10} from 50</label>
-        <a href="#" onClick={this.next}> Next </a>
+        <a href="#" onClick={this.next}> Next </a><br/><br/>
+        <input type="button" onClick={this.props.dismissAll} value="Dismiss All"/>
         {
           tops ?
           tops.slice(this.state.initial, this.state.initial + 10).map(top => {

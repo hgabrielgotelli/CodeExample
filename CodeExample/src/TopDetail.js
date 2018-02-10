@@ -23,6 +23,7 @@ class TopDetail extends Component {
               <p><label><b>Number of Comments: </b></label>{top.data.num_comments}</p>
               <p><label><b>Entry Date: </b></label>{this.returnEntryDate(top.data.created)} hours ago</p>
               <p><img src={top.data.thumbnail} /></p>
+              <input id={top.data.id} type="button" onClick={this.props.dismissTop} value="Dismiss Top"/>
             </div>
           : null
         }
