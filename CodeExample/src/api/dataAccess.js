@@ -1,11 +1,8 @@
 import _ from 'lodash';
 import { endpoint } from '../config'
 
-export const getTops = async (data) => {
-  const parameters = {
-  };
-
-  const query = _.template(endpoint);
+export const getTops = async (parameters) => {
+  const query = _.template(endpoint + '?limit=<%= limit%>');
   const result = await fetch(query(parameters));
   return result.json();
 };

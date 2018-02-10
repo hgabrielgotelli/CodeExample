@@ -12,8 +12,13 @@ class TopList extends Component {
   }
 
   queryTops = async () => {
-    const tops = await getTops();
+    const parameters = {
+      limit: 50,
+    };
+
+    const tops = await getTops(parameters);
     this.setState({ tops });
+    console.warn(tops);
   };
 
   render() {
