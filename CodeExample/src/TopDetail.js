@@ -14,10 +14,10 @@ class TopDetail extends Component {
     const { top } = this.props;
     return (
       <div className="topDetail">
-        <h1>Top Detail</h1>
         {
           top ?
             <div>
+              <h1>Top Detail</h1>
               <p><label><b>Title: </b></label>{top.data.title}</p>
               <p><label><b>Author: </b></label>{top.data.author}</p>
               <p><label><b>Number of Comments: </b></label>{top.data.num_comments}</p>

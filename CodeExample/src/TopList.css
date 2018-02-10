@@ -16,6 +16,7 @@ ul {
 li {
   float: left;
   margin: 10px;
+  clear: both;
 }
 
 .top-text {
