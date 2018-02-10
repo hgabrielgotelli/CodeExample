@@ -1,0 +1,27 @@
+.topList {
+  width: 30%;
+}
+
+.top-image {
+  float: left;
+  height: 70px;
+  width: 70px;
+  margin-right: 2%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  float: left;
+  margin: 10px;
+}
+
+.top-text {
+  text-align: left;
+}
+
+.top-title {
+  cursor: pointer;
+}

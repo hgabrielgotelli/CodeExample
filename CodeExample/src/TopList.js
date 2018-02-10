@@ -1,30 +1,30 @@
 import React, { Component } from 'react';
 
-import { getTops } from './api/dataAccess';
+
+import './TopList.css';
 
 class TopList extends Component {
-  state = {
-    tops: [],
-  };
-
-  componentDidMount() {
-    this.queryTops();
-  }
-
-  queryTops = async () => {
-    const parameters = {
-      limit: 50,
-    };
-
-    const tops = await getTops(parameters);
-    this.setState({ tops });
-    console.warn(tops);
-  };
-
   render() {
+    const { tops } = this.props;
     return (
-      <div className="container">
+      <div className="topList">
         <h1>TOPS</h1>
+        {
+          tops ?
+          tops.map(top => {
+            return (
+              <ul>
+                <a key={top.data.id} href="#" onClick={this.props.selectTop} id={top.data.id}>
+                  <li>
+                    <img className="top-image" src={top.data.thumbnail} />
+                    <div className="top-text"><label id={top.data.id} className="top-title">{top.data.title}</label></div>
+                  </li>
+                </a>
+              </ul>
+            )
+          })
+          : null
+        }
       </div>
     );
   }
