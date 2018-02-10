@@ -29,7 +29,7 @@ class App extends Component {
     const tops = this.state.tops.filter(top => {
       return top.data.id !== selectedId;
     });
-    this.setState({ tops });
+    this.setState({ tops, selectedTop: null });
   };
 
   dismissAll = (e) => {
