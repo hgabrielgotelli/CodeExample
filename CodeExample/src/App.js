@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import { getTops } from './api/dataAccess';
-import TopList from "./TopList";
-import TopDetail from "./TopDetail";
+import TopList from "./components/TopList/TopList";
+import TopDetail from "./components/TopDetails/TopDetail";
 import './App.css';
 
 class App extends Component {
@@ -24,7 +24,7 @@ class App extends Component {
     if (selectedTop) {
       selectedTop.data.read = true;
       this.setState({ selectedTop });
-    }    
+    }
   };
 
   dismissTop = (e) => {
