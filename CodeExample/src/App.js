@@ -21,7 +21,10 @@ class App extends Component {
       return top.data.id === selectedId;
     });
 
-    this.setState({ selectedTop });
+    if (selectedTop) {
+      selectedTop.data.read = true;
+      this.setState({ selectedTop });
+    }    
   };
 
   dismissTop = (e) => {

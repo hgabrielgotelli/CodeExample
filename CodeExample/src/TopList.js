@@ -41,7 +41,11 @@ class TopList extends Component {
                 <a key={top.data.id} href="#" onClick={this.props.selectTop} id={top.data.id}>
                   <li id={top.data.id}>
                     <img className="top-image" id={top.data.id} src={top.data.thumbnail} />
-                    <div className="top-text"><label id={top.data.id} className="top-title">{top.data.title}</label></div>
+                    <div id={top.data.id} className="top-text">
+                      <label id={top.data.id} className="top-title">
+                        {top.data.title} {top.data.read ? ' (Read)' : ' (Unread)'}
+                      </label>
+                    </div>
                   </li>
                 </a>
               </ul>
