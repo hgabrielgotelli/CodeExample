@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import { getTops } from './api/dataAccess';
 import TopList from "./components/TopList/TopList";
-import TopDetail from "./components/TopDetails/TopDetail";
+import TopDetail from "./components/TopDetail/TopDetail";
 import './App.css';
 
 class App extends Component {
