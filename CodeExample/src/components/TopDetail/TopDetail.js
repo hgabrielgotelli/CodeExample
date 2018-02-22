@@ -24,6 +24,7 @@ class TopDetail extends Component {
               <p><label><b>Entry Date: </b></label>{this.returnEntryDate(top.data.created)} hours ago</p>
               <p><img src={top.data.thumbnail} /></p>
               <input id={top.data.id} type="button" onClick={this.props.dismissTop} value="Dismiss Top"/>
+              <input id={top.data.id} className="add-favorites-button" type="button" onClick={this.props.addToFavorites} value="Add to Favorites"/>
             </div>
           : null
         }

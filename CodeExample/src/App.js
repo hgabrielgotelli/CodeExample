@@ -3,16 +3,21 @@ import React, { Component } from 'react';
 import { getTops } from './api/dataAccess';
 import TopList from "./components/TopList/TopList";
 import TopDetail from "./components/TopDetail/TopDetail";
+import TopFavorites from "./components/TopFavorites/TopFavorites";
 import './App.css';
 
 class App extends Component {
   state = {
     tops: [],
+    favoritesItems: [],
     selectedTop: null,
   };
 
   componentDidMount() {
     this.queryTops();
+    let favorites = localStorage.getItem('favorites');
+    let favoritesItems = (favorites) ? favorites.split(',') : [];
+    this.setState({ favoritesItems: favoritesItems });
   }
 
   selectTop = (e) => {
@@ -27,16 +32,42 @@ class App extends Component {
     }
   };
 
+  addToFavorites = (e) => {
+    const selectedId = e.target.id;
+    let favorites = localStorage.getItem('favorites');
+    let favoritesItems = (favorites) ? favorites.split(',') : [];
+
+    const favorite = favoritesItems.find(item => {
+      return item === selectedId;
+    });
+
+    if (!favorite) {
+      favoritesItems.push(selectedId);
+    }
+
+    localStorage.setItem('favorites', favoritesItems);
+    this.setState({ ...this.state, favoritesItems: favoritesItems });
+  }
+
   dismissTop = (e) => {
     const selectedId = e.target.id;
     const tops = this.state.tops.filter(top => {
       return top.data.id !== selectedId;
     });
-    this.setState({ tops, selectedTop: null });
+
+    let favorites = localStorage.getItem('favorites');
+    let favoritesItems = (favorites) ? favorites.split(',') : [];
+    
+    const newFavoritesItems = favoritesItems.filter(item => {
+      return item !== selectedId;
+    });
+
+    localStorage.setItem('favorites', newFavoritesItems);
+    this.setState({ tops, selectedTop: null, favoritesItems: newFavoritesItems });
   };
 
   dismissAll = (e) => {
-    this.setState({ tops: [], selectedTop: null });
+    this.setState({ tops: [], selectedTop: null, favoritesItems: [] });
   };
 
   queryTops = async () => {
@@ -46,15 +77,17 @@ class App extends Component {
 
     const tops = await getTops(parameters);
     this.setState({ tops: tops.data.children });
-    console.warn(this.state.tops);
   };
 
   render() {
     return (
+      this.state.tops && this.state.tops.length > 0 ?
       <div className="App">
+        <TopFavorites tops={this.state.tops} selectTop={this.selectTop} favorites={this.state.favoritesItems} />
         <TopList tops={this.state.tops} selectTop={this.selectTop} dismissAll={this.dismissAll} />
-        <TopDetail top={this.state.selectedTop} dismissTop={this.dismissTop} />
+        <TopDetail top={this.state.selectedTop} dismissTop={this.dismissTop} addToFavorites={this.addToFavorites} />
       </div>
+      : null
     );
   }
 }
